@@ -3,7 +3,7 @@ const int ledPinYellow = 6;  // Pin 6 for the LED
 const int ledPinGreen = 5;  // Pin 5 for the LED
 const int piezoPin = 4;     // Pin 4 for the piezo speaker
 long time;
-long cm;
+float cm;
 
 void setup()
 {
@@ -27,7 +27,9 @@ long readUltrasonicDistance(int triggerPin, int echoPin)
 void loop(){
 time = readUltrasonicDistance(10,10);
   cm = 0.01723*time;
- Serial.println("Distance: " + String(cm) + " cm");
+ Serial.print("Distance: ");
+  Serial.print(cm, 1);  // Print with 1 decimal place
+  Serial.println(" cm");
   
       // Green LED condition
   if (cm < 336 && cm >= 183) {
